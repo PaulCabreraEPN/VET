@@ -5,9 +5,11 @@ import ModalTratamiento from '../componets/Modals/ModalTratamiento';
 import TratamientosContext from '../context/TratamientosProvider';
 import TablaTratamientos from '../componets/TablaTratamientos';
 import Mensaje from '../componets/Alertas/Mensaje';
+import AuthContext from '../context/AuthProvider';
 
 
 const Visualizar = () => {
+    const {auth} = useContext(AuthContext)
     const {handleModal, modal, tratamientos, setTratamientos} = useContext(TratamientosContext)
 
     const [paciente, setPaciente] = useState({})
@@ -93,7 +95,12 @@ const Visualizar = () => {
             <hr className='my-4' />
              <div className='flex justify-between items-center'>
                <p>Este submódulo te permite visualizar los tratamientos del paciente</p>
-                  <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700" onClick={handleModal}>Registrar</button>
+               {
+        auth.rol === "veterinario" &&
+        (
+            <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700" onClick={handleModal}>Registrar</button>
+        )
+    }
              </div>
              {modal && (<ModalTratamiento idPaciente={paciente._id}/>)}
              {
