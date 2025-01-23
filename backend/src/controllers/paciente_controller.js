@@ -57,7 +57,11 @@ const perfilPaciente =(req,res)=>{
     delete req.pacienteBDD.createdAt
     delete req.pacienteBDD.updatedAt
     delete req.pacienteBDD.__v
-    res.status(200).json(req.pacienteBDD)
+    const respuesta=({
+        ...req.pacienteBDD,
+        rol:"paciente"
+    })
+    res.status(200).json(respuesta)
 }
 
 

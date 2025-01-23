@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CardPerfil } from '../componets/Perfil/CardPerfil'
 import { CardPerfilPaciente } from '../componets/Perfil/CardPerfilPaciente'
 import FormularioPerfil from '../componets/Perfil/FormularioPerfil'
@@ -8,6 +8,11 @@ import AuthContext from '../context/AuthProvider'
 
 const Perfil = () => {
     const {auth} = useContext(AuthContext)
+
+    useEffect(()=>{
+            console.log(auth);
+        },[])
+    
     return (
         <>       
             <div>
@@ -17,6 +22,7 @@ const Perfil = () => {
             </div>
 
             {
+                
                 "propietario" in auth 
                     ? (<CardPerfilPaciente/>)
                     : (
